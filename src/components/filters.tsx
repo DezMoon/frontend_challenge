@@ -16,6 +16,7 @@ function Filters({ statusFilter, setStatusFilter, searchTask, setSearchTask }: F
       <div>
         {/* Status dropdown */}
         <select
+          className="w-full px-2 py-1 bg-purple-200 border rounded"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -28,7 +29,7 @@ function Filters({ statusFilter, setStatusFilter, searchTask, setSearchTask }: F
 
         {/* Search input */}
         <input
-          className="w-full px-2 py-1 ml-1 border rounded"
+          className="w-full px-2 py-1 mt-2 bg-purple-200 border rounded"
           type="text"
           placeholder="Search tasks..."
           value={searchTask}

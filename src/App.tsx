@@ -1,6 +1,5 @@
-import Header from "./components/header"
-import Filters from "./components/filters";
-import MainBoard from "./components/mainBoard";
+//mport BarGraph from "./components/barGraph";
+import Welcome from "./components/welcome";
 
 
 
@@ -9,9 +8,9 @@ function App()  {
   return (
    
    <>
-   <Header />
-   {/* <Filters /> */}
-   <MainBoard/>
+   <Welcome/>
+   
+   
    </>
   );
 };
