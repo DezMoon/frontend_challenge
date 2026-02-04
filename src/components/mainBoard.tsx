@@ -67,23 +67,23 @@ function MainBoard() {
           </button>
         </div>
 
-        <ul className="space-y-2">
+        <ul className="">
           {tasks.map((task) => (
             <li
               key={task.id}
-              className="flex items-center justify-between pb-2 border-b"
+              className="grid items-center grid-cols-3 pb-2 border-b"
             >
               {/* <p className="text-black">{task.text}</p> */}
-              <p className="text-black">{task.text}</p>
+              <p className="text-black w-0.01">{task.text}</p>
               <button
-                className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600 w-30"
                 onClick={() => deleteTask(task.id)}
               >
                 Delete
               </button>
              
               <select
-                className="px-3 py-1 text-white bg-green-400 rounded hover:bg-green-300"
+                className="px-3 py-1 text-white bg-green-400 rounded hover:bg-green-300 w-30"
                 value={task.status} 
                 onChange={(e) =>
                   setTasks(

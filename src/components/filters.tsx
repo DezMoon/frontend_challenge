@@ -5,15 +5,18 @@ function Filters() {
     <div>
       <h3 className="mb-4 text-lg font-semibold text-center">Filter Tasks</h3>
 
-
       <div>
         <select>
           <option value="todo">To Do</option>
           <option value="in-progress">In Progress</option>
           <option value="done">Done</option>
+          <option value="backlog">Backlog</option>
         </select>
 
-        <input className="px-2 py-1 border rounded ml-1w-full " type="text" placeholder="Search tasks..."
+        <input
+          className="px-2 py-1 border rounded ml-1w-full "
+          type="text"
+          placeholder="Search tasks..."
         />
       </div>
     </div>
