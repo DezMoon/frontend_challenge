@@ -10,17 +10,12 @@ type Task = {
 function MainBoard() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [searchTask, setSearchTask] = useState("");
 
-  // Load tasks from localStorage on first render
-/*   useEffect(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
-    }
-  }, []);  */
-  
-   useEffect(() => {
-    fetch('/tasks.json')
+  // Load tasks from mock file
+  useEffect(() => {
+    fetch("/tasks.json")
       .then((res) => res.json())
       .then((data: Task[]) => {
         setTasks(data);
@@ -44,12 +39,26 @@ function MainBoard() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  // Filtering logic
+  const filteredTasks = tasks.filter((task) => {
+    const matchesStatus = statusFilter ? task.status === statusFilter : true;
+    const matchesSearch = task.text.toLowerCase().includes(searchTask.toLowerCase());
+    return matchesStatus && matchesSearch;
+  });
+
   return (
     <div className="flex flex-col gap-6 p-6 md:flex-row">
+      {/* Filters section */}
       <div className="w-full p-4 rounded shadow md:w-1/3 bg-gray-50">
-        <Filters />
+        <Filters
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          searchTask={searchTask}
+          setSearchTask={setSearchTask}
+        />
       </div>
 
+      {/* Tasks section */}
       <div className="w-full p-4 space-y-4 bg-white rounded shadow md:w-2/3">
         <div className="flex space-x-2">
           <input
@@ -67,35 +76,34 @@ function MainBoard() {
           </button>
         </div>
 
-        <ul className="">
-          {tasks.map((task) => (
+        <ul>
+          {filteredTasks.map((task) => (
             <li
               key={task.id}
               className="grid items-center grid-cols-3 pb-2 border-b"
             >
-              {/* <p className="text-black">{task.text}</p> */}
-              <p className="text-black w-0.01">{task.text}</p>
+              <p className="text-black">{task.text}</p>
               <button
-                className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600 w-30"
+                className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                 onClick={() => deleteTask(task.id)}
               >
                 Delete
               </button>
-             
+
               <select
-                className="px-3 py-1 text-white bg-green-400 rounded hover:bg-green-300 w-30"
-                value={task.status} 
+                className="px-3 py-1 text-white bg-green-400 rounded hover:bg-green-300"
+                value={task.status}
                 onChange={(e) =>
                   setTasks(
                     tasks.map((t) =>
                       t.id === task.id
                         ? { ...t, status: e.target.value as Task["status"] }
-                        : t,
-                    ),
+                        : t
+                    )
                   )
                 }
               >
-                <option value="todo">ToDo</option>
+                <option value="todo">To Do</option>
                 <option value="in-progress">In Progress</option>
                 <option value="done">Done</option>
                 <option value="backlog">Backlog</option>
