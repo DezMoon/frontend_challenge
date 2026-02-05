@@ -25,12 +25,12 @@ function Pagination({
         disabled={currentPage === i}
       >
         {i}
-      </button>
+      </button>,
     );
   }
 
   return (
-    <div className="flex items-center justify-center space-x-4">
+    <div className="flex items-center justify-center mt-3 space-x-4">
       {/* Previous Button */}
       <button
         className="px-5 py-2 text-sm font-semibold text-gray-700 transition bg-white border border-gray-300 rounded-full shadow-sm hover:bg-purple-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
@@ -53,7 +53,6 @@ function Pagination({
       >
         Next
       </button>
-
     </div>
   );
 }

@@ -8,15 +8,17 @@ type FiltersProps = {
   setSearchTask: any;
 };
 
-function Filters({ statusFilter, setStatusFilter, searchTask, setSearchTask }: FiltersProps) {
+function Filters({
+  statusFilter,
+  setStatusFilter,
+  searchTask,
+  setSearchTask,
+}: FiltersProps) {
   return (
     <div>
-      <h3 className="mb-4 text-lg font-semibold text-center">Filter Tasks</h3>
-
       <div>
-        {/* Status dropdown */}
         <select
-          className="w-full px-2 py-1 bg-purple-200 border rounded"
+          className="w-full px-2 py-1 bg-purple-200 border rounded "
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -26,15 +28,6 @@ function Filters({ statusFilter, setStatusFilter, searchTask, setSearchTask }: F
           <option value="done">Done</option>
           <option value="backlog">Backlog</option>
         </select>
-
-        {/* Search input */}
-        <input
-          className="w-full px-2 py-1 mt-2 bg-purple-200 border rounded"
-          type="text"
-          placeholder="Search tasks..."
-          value={searchTask}
-          onChange={(e) => setSearchTask(e.target.value)}
-        />
       </div>
     </div>
   );

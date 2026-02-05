@@ -1,20 +1,12 @@
 //mport BarGraph from "./components/barGraph";
 import Welcome from "./components/welcome";
 
-
-
-
-function App()  {
+function App() {
   return (
-   
-   <>
-   <Welcome/>
-   
-   
-   </>
+    <>
+      <Welcome />
+    </>
   );
-};
+}
 
 export default App;
-
-

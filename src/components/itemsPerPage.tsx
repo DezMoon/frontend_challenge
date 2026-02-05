@@ -18,7 +18,7 @@ function ItemsPerPage({
     <select
       value={itemsPerPage}
       onChange={handleRowsChange}
-      className="w-24 px-2 py-1 border rounded"
+      className="w-20 h-8 px-2 py-1 bg-purple-200 border rounded"
     >
       <option value={10}>10</option>
       <option value={20}>20</option>
