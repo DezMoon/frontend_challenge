@@ -11,7 +11,7 @@ type Task = {
 };
 
 function MainBoard() {
-  // ✅ Initialize tasks from localStorage
+  //Initialize tasks from localStorage
   const [tasks, setTasks] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
@@ -26,7 +26,7 @@ function MainBoard() {
   // Track selected task for modal
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
-  // ✅ Fallback: fetch tasks.json only if localStorage was empty
+  //fetch tasks.json only if localStorage was empty
   useEffect(() => {
     if (tasks.length === 0) {
       fetch("/tasks.json")
@@ -37,7 +37,7 @@ function MainBoard() {
     }
   }, []);
 
-  // ✅ Save tasks to localStorage whenever they change
+  // Save tasks to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -91,7 +91,6 @@ function MainBoard() {
       {/* Main container */}
       <div className="w-full max-w-5xl p-5 mx-auto mt-6 bg-white rounded shadow">
         <div className="flex flex-col gap-6 sm:flex-row sm:justify-between">
-          {/* Task Summary (left) */}
           <div className="p-4 text-center rounded shadow sm:w-1/3 bg-gray-50">
             <h2 className="text-lg font-bold text-purple-700 sm:text-xl">
               Task Summary
@@ -107,7 +106,6 @@ function MainBoard() {
             </ul>
           </div>
 
-          {/* Inputs + Search (right) */}
           <div className="flex flex-col gap-4 sm:w-2/3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <input
@@ -155,8 +153,6 @@ function MainBoard() {
           </div>
         </div>
 
-        {/* Task List */}
-        {/* Task List with headers and row borders */}
         <div className="mt-6 border rounded">
           {/* Header row */}
           <div className="grid grid-cols-[1fr_auto] bg-gray-100 font-semibold text-sm border-b">
@@ -222,7 +218,7 @@ function MainBoard() {
         />
       </div>
 
-      {/* Task Modal */}
+      {/* task  modal */}
       <TaskModal
         task={selectedTask}
         onClose={() => setSelectedTask(null)}
