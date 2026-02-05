@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Filters from "./filters";
 import Pagination from "./pagination";
+import ItemsPerPage from "./itemsPerPage";
 
 type Task = {
   id: number;
@@ -14,8 +15,9 @@ function MainBoard() {
   const [statusFilter, setStatusFilter] = useState("");
   const [searchTask, setSearchTask] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   //fetching from jason file
+
   useEffect(() => {
     fetch("/tasks.json")
       .then((res) => res.json())
@@ -63,14 +65,19 @@ function MainBoard() {
 
   return (
     <div className="min-h-screen bg- bg-linear-to-br from-blue-300 via-purple-500 to-pink-400">
-        <header className="h-16 px-4 text-white bg-gray-300 shadow-md ">
-      <p className="text-5xl font-semibold text-center text-transparent bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 bg-clip-text">TaskMaster Dashboard</p>
-    </header>
+      <header className="h-16 px-4 text-white bg-gray-300 shadow-md ">
+        <p className="text-5xl font-semibold text-center text-transparent bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 bg-clip-text">
+          TaskMaster Dashboard
+        </p>
+      </header>
+
       <div className="flex flex-col gap-6 p-6 md:flex-row">
         {/* Filters */}
         <div className="w-full p-4 rounded shadow md:w-1/3 bg-gray-50">
           <div className="p-4 mt-6 space-y-2 rounded-lg shadow-md bg-purple-50">
-            <h2 className="mt-5 text-lg font-bold text-purple-700">Task Summary</h2>
+            <h2 className="mt-5 text-lg font-bold text-purple-700">
+              Task Summary
+            </h2>
             <p className="font-medium text-gray-700">
               Total Tasks: {totalTasks}
             </p>
@@ -91,6 +98,7 @@ function MainBoard() {
         </div>
 
         {/* Task List */}
+
         <div className="w-full p-4 space-y-4 bg-white rounded shadow md:w-2/3">
           <div className="flex space-x-2">
             <input
@@ -148,6 +156,13 @@ function MainBoard() {
             totalPages={totalPages}
             onPageChange={setCurrentPage}
           />
+          <ItemsPerPage
+            itemsPerPage={itemsPerPage}
+            onItemsPerPageChange={(items) => {
+              setItemsPerPage(items);
+              setCurrentPage(1);
+            }}
+          />
         </div>
       </div>
     </div>
@@ -155,5 +170,3 @@ function MainBoard() {
 }
 
 export default MainBoard;
-
-// <div className="relative">
